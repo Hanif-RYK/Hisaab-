@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentation · Hisaab</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<style>
+  .doc { display: grid; grid-template-columns: 240px minmax(0, 1fr); min-height: 100vh; }
+  .doc-nav { position: sticky; top: 0; height: 100vh; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--line); padding: 20px 14px; }
+  .doc-nav a { display: block; padding: 6px 10px; border-radius: 8px; color: var(--ink-2); font-size: 14px; }
+  .doc-nav a:hover { background: var(--surface-2); text-decoration: none; }
+  .doc-main { padding: 40px clamp(20px, 5vw, 64px); max-width: 860px; }
+  .doc-main section { padding-top: 12px; margin-bottom: 40px; }
+  .doc-main h2 { font-size: 24px; margin-bottom: 12px; padding-top: 8px; }
+  .doc-main h3 { margin: 22px 0 8px; }
+  .doc-main p, .doc-main li { color: var(--ink-2); max-width: 70ch; }
+  .doc-main li + li { margin-top: 4px; }
+  pre { background: #10201b; color: #d8efe6; padding: 16px 18px; border-radius: 12px; overflow-x: auto; font-size: 13px; line-height: 1.6; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92em; }
+  p code, li code, td code { background: var(--surface-2); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; color: var(--ink); }
+  .doc-main .table td, .doc-main .table th { font-size: 13.5px; }
+  @media (max-width: 860px) { .doc { grid-template-columns: minmax(0, 1fr); } .doc-nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); } }
+</style>
+</head>
+<body>
+<div class="doc">
+  <nav class="doc-nav" aria-label="Documentation">
+    <a class="brand" href="index.html" style="padding:0 10px 14px;height:auto;border:0"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="var(--primary)"/><path d="M10 14h20M10 20h20M10 26h13" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M15 9v22" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/></svg><span class="brand-name">Hisaab</span></a>
+    <a href="#start">Getting started</a>
+    <a href="#files">Files and folders</a>
+    <a href="#pages">Pages</a>
+    <a href="#brand">Change colours and logo</a>
+    <a href="#fonts">Fonts</a>
+    <a href="#dark">Dark mode</a>
+    <a href="#nav">Sidebar menu</a>
+    <a href="#charts">Charts</a>
+    <a href="#components">Interactive components</a>
+    <a href="#forms">Forms and validation</a>
+    <a href="#deploy">Publishing your site</a>
+    <a href="#browsers">Browser support</a>
+    <a href="#credits">Credits and licences</a>
+    <a href="#support">Support</a>
+    <a href="#changelog">Changelog</a>
+  </nav>
+  <main class="doc-main">
+    <h1>Hisaab documentation</h1>
+    <p>Hisaab is a business admin dashboard template made with plain HTML, CSS and JavaScript. There is nothing to install and no build step: open a file in your browser and it works. Version 1.0.0.</p>
+
+    <section id="start"><h2>Getting started</h2>
+      <ol>
+        <li>Unzip the download.</li>
+        <li>Open the <code>Hisaab</code> folder and double-click <code>index.html</code>. The dashboard opens in your browser.</li>
+        <li>Open any <code>.html</code> file in a code editor such as VS Code to change text, numbers and links.</li>
+      </ol>
+      <p>Everything works offline. Fonts, icons and charts are included in the package, so the template does not load anything from the internet.</p>
+    </section>
+
+    <section id="files"><h2>Files and folders</h2>
+<pre><code>Hisaab/
+├── index.html              Overview dashboard
+├── sales.html, crm.html    Two more dashboards
+├── orders.html …           Business, workspace and interface pages (18 in total)
+├── documentation.html      This file
+└── assets/
+    ├── css/style.css       All styles, organised in numbered sections
+    ├── js/app.js           Menus, modals, tabs, tables, kanban, calendar, forms
+    ├── js/charts.js        Small SVG chart library (line, area, bar, stacked, donut, spark)
+    ├── fonts/              Bricolage Grotesque + Instrument Sans (woff2) and their licences
+    └── img/                logo.svg, favicon.svg</code></pre>
+    </section>
+
+    <section id="pages"><h2>Pages</h2>
+      <div class="card card-flush"><div class="table-wrap"><table class="table">
+        <thead><tr><th>Page</th><th>File</th><th>What it shows</th></tr></thead>
+        <tbody>
+          <tr><td>Overview</td><td><code>index.html</code></td><td>Key figures, revenue chart, sales channels, recent orders, activity, top products</td></tr>
+          <tr><td>Sales</td><td><code>sales.html</code></td><td>Revenue by channel, checkout funnel, traffic, countries, categories</td></tr>
+          <tr><td>CRM</td><td><code>crm.html</code></td><td>Deal stages, open deals, follow-ups, pipeline chart, team leaderboard</td></tr>
+          <tr><td>Orders</td><td><code>orders.html</code></td><td>Searchable, sortable, filterable table with pagination</td></tr>
+          <tr><td>Products</td><td><code>products.html</code></td><td>Inventory table, low-stock alert, add-product modal with upload</td></tr>
+          <tr><td>Customers</td><td><code>customers.html</code></td><td>Customer cards with orders, spend and rating</td></tr>
+          <tr><td>Invoices</td><td><code>invoices.html</code>, <code>invoice-detail.html</code></td><td>Invoice list and a printable invoice</td></tr>
+          <tr><td>Calendar</td><td><code>calendar.html</code></td><td>Month view with events and month navigation</td></tr>
+          <tr><td>Tasks</td><td><code>tasks.html</code></td><td>Kanban board with drag and drop</td></tr>
+          <tr><td>Profile, Settings</td><td><code>profile.html</code>, <code>settings.html</code></td><td>Profile with tabs; settings with account, store, notifications, billing, security</td></tr>
+          <tr><td>Components, Forms</td><td><code>components.html</code>, <code>forms.html</code></td><td>Every UI element and form control, ready to copy</td></tr>
+          <tr><td>Auth</td><td><code>login.html</code>, <code>register.html</code>, <code>forgot-password.html</code></td><td>Sign in, create account, reset password</td></tr>
+          <tr><td>Error</td><td><code>404.html</code></td><td>Page not found</td></tr>
+        </tbody></table></div></div>
+    </section>
+
+    <section id="brand"><h2>Change colours and logo</h2>
+      <p>All colours are CSS variables at the top of <code>assets/css/style.css</code>. Change <code>--primary</code> and <code>--accent</code> to rebrand the whole template. Dark mode colours live in the <code>[data-theme="dark"]</code> block just below.</p>
+<pre><code>:root {
+  --primary: #0f6e5a;        /* buttons, links, active menu, charts */
+  --primary-strong: #0a5545; /* hover state */
+  --primary-soft: #e3f1ec;   /* light backgrounds */
+  --accent: #d9922e;         /* highlights */
+}</code></pre>
+      <p>Chart colours use <code>--c1</code> to <code>--c5</code>. The logo is an inline SVG in each page (search for <code>brand-mark</code>) and a file in <code>assets/img/logo.svg</code>. Replace both with your own logo.</p>
+    </section>
+
+    <section id="fonts"><h2>Fonts</h2>
+      <p>Headings and figures use Bricolage Grotesque; interface text uses Instrument Sans. Both are included as <code>.woff2</code> files and loaded with <code>@font-face</code> in section 1 of <code>style.css</code>. To use another font, add its file to <code>assets/fonts</code> and change <code>--font-display</code> and <code>--font-ui</code>.</p>
+    </section>
+
+    <section id="dark"><h2>Dark mode</h2>
+      <p>The moon button in the top bar switches themes. The choice is remembered in the browser. On the first visit the template follows the visitor's system setting. To force one theme, change <code>data-theme="light"</code> on the <code>&lt;html&gt;</code> tag and remove the small script in the <code>&lt;head&gt;</code>.</p>
+    </section>
+
+    <section id="nav"><h2>Sidebar menu</h2>
+      <p>The menu is a plain list of links inside <code>&lt;nav class="nav"&gt;</code>. Add a link by copying an existing one. Mark the current page with <code>class="active"</code> and <code>aria-current="page"</code>. The collapse button in the top bar shrinks the sidebar to icons on desktop; on phones the menu opens as a drawer.</p>
+    </section>
+
+    <section id="charts"><h2>Charts</h2>
+      <p>Charts are drawn by <code>assets/js/charts.js</code> from a JSON object in the <code>data-chart</code> attribute. They redraw on resize and when the theme changes, and show a tooltip on hover.</p>
+<pre><code>&lt;div class="chart" data-chart='{
+  "type": "area",
+  "height": 280,
+  "prefix": "$", "suffix": "k",
+  "labels": ["Jan", "Feb", "Mar"],
+  "series": [
+    {"name": "This year", "data": [42, 48, 45]},
+    {"name": "Last year", "data": [38, 40, 41], "color": 2, "dashed": true}
+  ]
+}'&gt;&lt;/div&gt;</code></pre>
+      <ul>
+        <li><code>type</code>: <code>line</code>, <code>area</code>, <code>bar</code>, <code>stacked</code>, <code>donut</code> or <code>spark</code>.</li>
+        <li>Donut charts use <code>values</code> and <code>labels</code> instead of series. Optional <code>centerValue</code> and <code>centerLabel</code> set the text in the middle.</li>
+        <li><code>color</code> picks a palette colour by number (0–4).</li>
+        <li>Redraw a chart from your own code with <code>HisaabCharts.render(element)</code>.</li>
+      </ul>
+    </section>
+
+    <section id="components"><h2>Interactive components</h2>
+      <p>Every feature is switched on with a <code>data-</code> attribute, so you can copy markup between pages. See <code>components.html</code> for working examples.</p>
+      <div class="card card-flush"><div class="table-wrap"><table class="table">
+        <thead><tr><th>Feature</th><th>Attribute</th></tr></thead>
+        <tbody>
+          <tr><td>Open a modal</td><td><code>data-modal-open="modal-id"</code> on a button; <code>data-modal-close</code> inside the modal</td></tr>
+          <tr><td>Dropdown menu</td><td><code>data-dropdown</code> on the wrapper, <code>data-dropdown-toggle</code> on the button</td></tr>
+          <tr><td>Tabs</td><td><code>data-tabs</code> on the wrapper; buttons with <code>role="tab"</code> and <code>aria-controls</code></td></tr>
+          <tr><td>Toast message</td><td><code>data-toast="Saved"</code> on any button, or call <code>hisaabToast("Saved")</code></td></tr>
+          <tr><td>Data table</td><td><code>data-table</code> on the card; <code>data-table-search</code>, <code>data-table-filter</code>, <code>data-sort</code> on headers, <code>data-per-page</code></td></tr>
+          <tr><td>Kanban board</td><td><code>data-kanban</code> on the board</td></tr>
+          <tr><td>Calendar</td><td><code>data-calendar</code>; events in a <code>&lt;script type="application/json"&gt;</code> inside it</td></tr>
+          <tr><td>Print</td><td><code>data-print</code> on a button</td></tr>
+          <tr><td>Export CSV</td><td><code>data-export="orders.csv"</code> plus <code>data-export-table</code> (visible table rows), <code>data-export-chart="#chartId"</code> (chart data) or <code>data-export-items=".cust"</code> (items with a <code>data-csv</code> JSON attribute)</td></tr>
+          <tr><td>Add a row from a modal form</td><td>On the modal's form: <code>data-add-to="#table"</code> and <code>data-template="tpl-id"</code>. The <code>&lt;template&gt;</code> uses <code>{name}</code> for each named field, plus <code>{today}</code>, <code>{id}</code>, <code>{initials}</code> and <code>{money}</code></td></tr>
+          <tr><td>Row actions</td><td><code>data-row-action="status|Shipped|info"</code> changes the badge in the row's <code>data-status-cell</code>; <code>data-row-action="remove"</code> removes the row. <code>data-done</code> sets the toast</td></tr>
+          <tr><td>CSV import</td><td><code>data-import</code> on a button inside a modal with a file dropzone. Reads the file and reports the row count; connect it to your backend to save</td></tr>
+          <tr><td>Filter cards</td><td><code>data-filter-list=".item"</code> on a wrapper with a <code>data-filter-search</code> input and <code>data-filter-tag="VIP"</code> buttons. Items need <code>data-tag</code></td></tr>
+          <tr><td>Saved state on a form</td><td><code>data-saved-label="Saved"</code> on a <code>data-validate</code> form, and an optional <code>&lt;span data-saved-note hidden&gt;</code></td></tr>
+          <tr><td>Date range menu</td><td><code>data-range</code> on a dropdown, <code>data-range-option</code> on its items and <code>data-range-label</code> on the button text</td></tr>
+        </tbody></table></div></div>
+      <p class="mt-16">Keyboard: <span class="kbd">Esc</span> closes menus and modals, <span class="kbd">Ctrl</span> + <span class="kbd">K</span> or <span class="kbd">/</span> focuses search, arrow keys move between tabs.</p>
+    </section>
+
+    <section id="forms"><h2>Forms and validation</h2>
+      <p>Add <code>data-validate</code> to a <code>&lt;form&gt;</code>. Fields with <code>required</code> are checked on submit and an <code>.error-text</code> message after the field is shown when it is empty or invalid. Use <code>data-success="Message"</code> to show a toast and <code>data-redirect="page.html"</code> to go to another page after a valid submit.</p>
+      <p>The forms are front-end only. To save data, send the form to your own server or a form service.</p>
+    </section>
+
+    <section id="deploy"><h2>Publishing your site</h2>
+      <p>Upload the contents of the <code>Hisaab</code> folder to any web host: cPanel, Netlify, Vercel or GitHub Pages. No server code is needed.</p>
+    </section>
+
+    <section id="browsers"><h2>Browser support</h2>
+      <p>Latest versions of Chrome, Edge, Firefox and Safari, on desktop and mobile. Internet Explorer is not supported.</p>
+    </section>
+
+    <section id="credits"><h2>Credits and licences</h2>
+      <ul>
+        <li>Bricolage Grotesque and Instrument Sans: SIL Open Font License 1.1. Licence files are in <code>assets/fonts</code>.</li>
+        <li>Icons, logo, charts and all other code and artwork: created for Hisaab and covered by your purchase licence.</li>
+        <li>All names, companies and figures in the demo are fictional.</li>
+      </ul>
+    </section>
+
+    <section id="support"><h2>Support</h2>
+      <p>If something doesn't work as described here, send a message through the marketplace where you bought Hisaab. Include the page name, your browser and a screenshot, and you'll get a reply within two working days.</p>
+    </section>
+
+    <section id="changelog"><h2>Changelog</h2>
+      <p><b class="strong">1.0.0</b>: first release. 18 pages, light and dark mode, SVG charts, data tables, kanban, calendar, forms.</p>
+    </section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

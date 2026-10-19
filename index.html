@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview · Hisaab</title>
+<meta name="description" content="Business overview dashboard with revenue, orders and activity.">
+<meta name="theme-color" content="#0f6e5a">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script>(function(){var t;try{t=localStorage.getItem('hisaab-theme')}catch(e){}if(!t)t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);try{if(localStorage.getItem('hisaab-collapsed')==='1')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}})();</script>
+</head>
+<body>
+<a class="sr-only" href="#main">Skip to content</a>
+<div class="app">
+
+<aside class="sidebar" id="sidebar" aria-label="Main navigation">
+  <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="var(--primary)"/><path d="M10 14h20M10 20h20M10 26h13" stroke="#fff" stroke-width="2.6" stroke-linecap="round" opacity=".92"/><path d="M15 9v22" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/></svg><span class="brand-name">Hisaab</span></a>
+  <nav class="nav"><div class="nav-group"><div class="nav-title">Dashboards</div><a href="index.html" class="active" aria-current="page" title="Overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span>Overview</span></a><a href="sales.html" title="Sales"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg><span>Sales</span></a><a href="crm.html" title="CRM"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20"/><circle cx="10" cy="8" r="3.5"/><path d="M20 20v-1.5a3.5 3.5 0 0 0-2.5-3.35"/><path d="M15.5 4.6a3.5 3.5 0 0 1 0 6.8"/></svg><span>CRM</span></a></div><div class="nav-group"><div class="nav-title">Business</div><a href="orders.html" title="Orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2.6l2.3 11.2a2 2 0 0 0 2 1.6h8.1a2 2 0 0 0 2-1.5L21 7H6"/></svg><span>Orders</span><span class="count">12</span></a><a href="products.html" title="Products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5"/><path d="M12 13v8"/></svg><span>Products</span></a><a href="customers.html" title="Customers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg><span>Customers</span></a><a href="invoices.html" title="Invoices"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 13h7M9 17h7M9 9h2"/></svg><span>Invoices</span></a></div><div class="nav-group"><div class="nav-title">Workspace</div><a href="calendar.html" title="Calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg><span>Calendar</span></a><a href="tasks.html" title="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="5" height="18" rx="1.5"/><rect x="10" y="3" width="5" height="12" rx="1.5"/><rect x="17" y="3" width="4" height="8" rx="1.5"/></svg><span>Tasks</span></a><a href="profile.html" title="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg><span>Profile</span></a><a href="settings.html" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Settings</span></a></div><div class="nav-group"><div class="nav-title">Interface</div><a href="components.html" title="Components"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg><span>Components</span></a><a href="forms.html" title="Forms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6M7 17h3"/></svg><span>Forms</span></a><a href="login.html" title="Sign in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5M15 12H3"/></svg><span>Sign in</span></a><a href="404.html" title="Error page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span>Error page</span></a></div></nav>
+  <div class="sidebar-foot">
+    <div class="plan-note"><strong>Storage</strong>6.2 GB of 10 GB used
+      <div class="meter" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" aria-label="Storage used"><span style="width:62%"></span></div>
+      <a href="settings.html">Manage plan</a></div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" aria-hidden="true"></div>
+<div class="main">
+
+<header class="topbar">
+  <button class="icon-btn menu-toggle" type="button" data-sidebar-open aria-label="Open menu" aria-controls="sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <button class="icon-btn collapse-toggle" type="button" data-sidebar-collapse aria-label="Collapse sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg></button>
+  <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="sr-only">Search</span>
+    <input type="search" placeholder="Search orders, customers…" aria-label="Search"><kbd>Ctrl K</kbd></label>
+  <div class="topbar-actions">
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+      <span class="theme-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span><span class="theme-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span></button>
+    <div class="dropdown" data-dropdown>
+      <button class="icon-btn" type="button" data-dropdown-toggle aria-label="Notifications, 3 unread"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10.3 20a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dot"></span></button>
+      <div class="menu" style="min-width:320px">
+        <div class="menu-head">Notifications <a href="#" class="small" data-mark-read>Mark all as read</a></div>
+        <div class="notif"><span class="avatar avatar-sm" style="background:#c8657a" aria-hidden="true">DZ</span><div><p><b>Daniela Zhang</b> paid invoice INV-2026-0178</p><small>4 min ago</small></div></div><div class="notif"><span class="avatar avatar-sm" style="background:#b5654a" aria-hidden="true">HR</span><div><p><b>Hamza Rahman</b> left a 5-star review</p><small>38 min ago</small></div></div><div class="notif"><span class="avatar avatar-sm" style="background:#8a9a5b" aria-hidden="true">MC</span><div><p><b>Maya Cohen</b> asked about a late delivery</p><small>2 hours ago</small></div></div>
+      </div>
+    </div>
+    <div class="dropdown" data-dropdown>
+      <button class="user-btn" type="button" data-dropdown-toggle aria-label="Account menu">
+        <span class="avatar avatar-sm" style="background:#0f6e5a" aria-hidden="true">HR</span><span class="who"><b>Hanif Rehman</b><small>Owner</small></span></button>
+      <div class="menu">
+        <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>My profile</a>
+        <a href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</a>
+        <a href="invoices.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15v13H5a2 2 0 0 1-2-2V5"/><path d="M16 13.5h.01"/></svg>Billing</a>
+        <hr>
+        <a href="login.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg>Sign out</a>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="content" id="main">
+<div class="page-head"><div><h1>Good morning, Hanif</h1><p>Here's how your business did this month. Figures update every 15 minutes.</p></div><div class="actions"><div class="dropdown" data-dropdown data-range><button class="btn" type="button" data-dropdown-toggle><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg><span data-range-label>Oct 1 – Oct 13</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="menu" style="min-width:180px"><button type="button" data-range-option>Today</button><button type="button" data-range-option>Last 7 days</button><button type="button" data-range-option>Oct 1 – Oct 13</button><button type="button" data-range-option>Last 30 days</button><button type="button" data-range-option>This quarter</button></div></div><button class="btn btn-primary" type="button" data-modal-open="new-invoice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New invoice</button></div></div>
+<section class="card ledger" aria-label="Key figures"><div class="ledger-cell">
+  <div class="kpi-label"><i style="background:var(--c1)"></i>Revenue</div>
+  <div class="kpi-value">$86.4<small>k</small></div>
+  <div class="kpi-foot"><span class="trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>8.9%</span><span>vs September</span></div>
+  <div class="chart kpi-spark" data-chart='{"type":"spark","data":[52,55,54,60,58,64,67,70,69,76,82,86],"color":0}'></div>
+</div><div class="ledger-cell">
+  <div class="kpi-label"><i style="background:var(--c2)"></i>Orders</div>
+  <div class="kpi-value">1,284</div>
+  <div class="kpi-foot"><span class="trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>4.2%</span><span>vs September</span></div>
+  <div class="chart kpi-spark" data-chart='{"type":"spark","data":[90,96,94,101,99,108,104,112,110,118,121,128],"color":1}'></div>
+</div><div class="ledger-cell">
+  <div class="kpi-label"><i style="background:var(--c3)"></i>Average order</div>
+  <div class="kpi-value">$67.30</div>
+  <div class="kpi-foot"><span class="trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>2.1%</span><span>vs September</span></div>
+  <div class="chart kpi-spark" data-chart='{"type":"spark","data":[61,62,60,63,64,63,65,64,66,65,66,67],"color":2}'></div>
+</div><div class="ledger-cell">
+  <div class="kpi-label"><i style="background:var(--c4)"></i>Refund rate</div>
+  <div class="kpi-value">1.8<small>%</small></div>
+  <div class="kpi-foot"><span class="trend down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>0.3 pts</span><span>vs September</span></div>
+  <div class="chart kpi-spark" data-chart='{"type":"spark","data":[2.6,2.4,2.5,2.2,2.3,2.1,2.0,2.1,1.9,2.0,1.9,1.8],"color":3}'></div>
+</div></section>
+<div class="grid mt-24">
+  <section class="card span-8">
+    <div class="card-head"><div><h2>Revenue</h2><p>Monthly revenue, this year against last year</p></div>
+      <div class="segmented" data-target="rev-chart" role="group" aria-label="Range">
+        <button type="button" aria-pressed="false" data-set='{"type":"area","height":290,"prefix":"$","suffix":"k","labels":["Aug","Sep","Oct"],"series":[{"name":"This year","data":[74,79,86]},{"name":"Last year","data":[58,61,64],"color":2,"dashed":true}]}'>Quarter</button>
+        <button type="button" aria-pressed="true" data-set='{"type":"area","height":290,"prefix":"$","suffix":"k","labels":["Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"],"series":[{"name":"This year","data":[42,48,45,53,58,55,63,68,66,74,79,86]},{"name":"Last year","data":[38,40,41,44,47,49,50,54,56,58,61,64],"color":2,"dashed":true}]}'>Year</button></div></div>
+    <div class="card-body"><div class="legend"><span><i style="background:var(--c1)"></i>This year</span><span><i style="background:var(--c3)"></i>Last year</span></div><div class="chart mt-16" id="rev-chart" data-chart='{"type":"area","height":290,"prefix":"$","suffix":"k","labels":["Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"],"series":[{"name":"This year","data":[42,48,45,53,58,55,63,68,66,74,79,86]},{"name":"Last year","data":[38,40,41,44,47,49,50,54,56,58,61,64],"color":2,"dashed":true}]}'></div></div>
+  </section>
+  <section class="card span-4">
+    <div class="card-head"><div><h2>Sales channels</h2><p>Share of October revenue</p></div></div>
+    <div class="card-body">
+      <div class="donut-wrap"><div class="chart" data-chart='{"type":"donut","values":[48,27,15,10],"labels":["Online store","Marketplace","Retail","Wholesale"],"suffix":"%","centerLabel":"October revenue","centerValue":"$86.4k"}'></div>
+      <ul class="list"><li><span class="flex items-center gap-8"><i style="width:10px;height:10px;border-radius:3px;background:var(--c1)"></i>Online store</span><b class="num">48%</b></li><li><span class="flex items-center gap-8"><i style="width:10px;height:10px;border-radius:3px;background:var(--c2)"></i>Marketplace</span><b class="num">27%</b></li><li><span class="flex items-center gap-8"><i style="width:10px;height:10px;border-radius:3px;background:var(--c3)"></i>Retail</span><b class="num">15%</b></li><li><span class="flex items-center gap-8"><i style="width:10px;height:10px;border-radius:3px;background:var(--c4)"></i>Wholesale</span><b class="num">10%</b></li></ul></div>
+    </div>
+  </section>
+  <section class="card span-8 card-flush">
+    <div class="card-head"><div><h2>Recent orders</h2><p>The latest 6 orders across all channels</p></div><a class="btn btn-sm" href="orders.html">View all orders</a></div>
+    <div class="card-body" style="padding:14px 0 0"><div class="table-wrap"><table class="table"><thead><tr><th>Order</th><th>Customer</th><th>Product</th><th>Status</th><th class="right">Total</th></tr></thead><tbody><tr><td class="nowrap"><a href="orders.html" class="strong">#HS-4821</a></td>
+<td><div class="person"><span class="avatar avatar-sm" style="background:#0f6e5a" aria-hidden="true">AO</span><div><b>Amara Okafor</b></div></div></td>
+<td class="muted">Linen Work Shirt</td><td><span class="badge badge-danger">Refunded</span></td><td class="right strong">$144</td></tr><tr><td class="nowrap"><a href="orders.html" class="strong">#HS-4820</a></td>
+<td><div class="person"><span class="avatar avatar-sm" style="background:#6b5ca5" aria-hidden="true">FL</span><div><b>Farid López</b></div></div></td>
+<td class="muted">Brass Desk Lamp</td><td><span class="badge badge-info">Shipped</span></td><td class="right strong">$178</td></tr><tr><td class="nowrap"><a href="orders.html" class="strong">#HS-4819</a></td>
+<td><div class="person"><span class="avatar avatar-sm" style="background:#5b7fa6" aria-hidden="true">KN</span><div><b>Kavya Nasser</b></div></div></td>
+<td class="muted">Canvas Weekender Bag</td><td><span class="badge badge-success">Paid</span></td><td class="right strong">$336</td></tr><tr><td class="nowrap"><a href="orders.html" class="strong">#HS-4818</a></td>
+<td><div class="person"><span class="avatar avatar-sm" style="background:#b5654a" aria-hidden="true">PT</span><div><b>Priya Tanaka</b></div></div></td>
+<td class="muted">Wool Overshirt</td><td><span class="badge badge-warning">Pending</span></td><td class="right strong">$192</td></tr><tr><td class="nowrap"><a href="orders.html" class="strong">#HS-4817</a></td>
+<td><div class="person"><span class="avatar avatar-sm" style="background:#8a9a5b" aria-hidden="true">VM</span><div><b>Valeria Moreau</b></div></div></td>
+<td class="muted">Arc Floor Lamp</td><td><span class="badge badge-success">Paid</span></td><td class="right strong">$398</td></tr><tr><td class="nowrap"><a href="orders.html" class="strong">#HS-4816</a></td>
+<td><div class="person"><span class="avatar avatar-sm" style="background:#d9922e" aria-hidden="true">BP</span><div><b>Ben Petrov</b></div></div></td>
+<td class="muted">Dot-Grid Planner</td><td><span class="badge badge-warning">Pending</span></td><td class="right strong">$24</td></tr></tbody></table></div></div>
+  </section>
+  <section class="card span-4">
+    <div class="card-head"><div><h2>Activity</h2><p>What happened in your store</p></div></div>
+    <div class="card-body"><ul class="timeline"><li><b>Daniela Zhang</b> paid invoice <b>INV-2026-0178</b> for $4,180<small>4 minutes ago</small></li><li><b>Arc Floor Lamp</b> dropped below 10 units in stock<small>1 hour ago</small></li><li><b>Priya Tanaka</b> placed order <b>#HS-4818</b><small>2 hours ago</small></li><li><b>You</b> published <b>Autumn sale</b> discount code AUTUMN15<small>Yesterday, 17:40</small></li><li><b>Hana Sato</b> was refunded for order <b>#HS-4815</b><small>Yesterday, 11:05</small></li></ul></div>
+  </section>
+  <section class="card span-6">
+    <div class="card-head"><div><h2>Top products</h2><p>By revenue this month</p></div><a class="small" href="products.html">All products</a></div>
+    <div class="card-body"><div class="bar-row"><div class="person"><span class="thumb" style="background:var(--info-soft);color:var(--info)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></span><div><b>Canvas Weekender Bag</b><small>497 sold at $112</small></div></div>
+<span class="strong num">$55,664</span><div class="progress"><span style="width:100%"></span></div></div><div class="bar-row"><div class="person"><span class="thumb" style="background:var(--danger-soft);color:var(--danger)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><div><b>Compact Film Camera</b><small>206 sold at $249</small></div></div>
+<span class="strong num">$51,294</span><div class="progress"><span style="width:92%"></span></div></div><div class="bar-row"><div class="person"><span class="thumb" style="background:var(--accent-soft);color:var(--warning)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M12 9v3l1.5 1.5M9 3h6l1 3.5M9 21h6l1-3.5M8 6.5 9 3M8 17.5 9 21"/></svg></span><div><b>Field Watch 38mm</b><small>288 sold at $175</small></div></div>
+<span class="strong num">$50,400</span><div class="progress"><span style="width:91%"></span></div></div><div class="bar-row"><div class="person"><span class="thumb" style="background:var(--accent-soft);color:var(--warning)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg></span><div><b>Ceramic Pour-Over Set</b><small>597 sold at $64</small></div></div>
+<span class="strong num">$38,208</span><div class="progress"><span style="width:69%"></span></div></div><div class="bar-row"><div class="person"><span class="thumb" style="background:var(--accent-soft);color:var(--warning)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 6.6 16 4a4 4 0 0 1-8 0L3.6 6.6a1 1 0 0 0-.5 1.2L4.5 12H7v9h10v-9h2.5l1.4-4.2a1 1 0 0 0-.5-1.2z"/></svg></span><div><b>Wool Overshirt</b><small>353 sold at $96</small></div></div>
+<span class="strong num">$33,888</span><div class="progress"><span style="width:61%"></span></div></div></div>
+  </section>
+  <section class="card span-6">
+    <div class="card-head"><div><h2>Orders by weekday</h2><p>Average over the last 8 weeks</p></div></div>
+    <div class="card-body"><div class="chart" data-chart='{"type":"bar","height":250,"labels":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"series":[{"name":"Orders","data":[142,158,171,166,214,238,190]}]}'></div></div>
+  </section>
+</div>
+<div class="modal" id="new-invoice" role="dialog" aria-modal="true" aria-labelledby="new-invoice-title" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-dialog">
+    <div class="modal-head"><h2 id="new-invoice-title">New invoice</h2><button class="icon-btn" type="button" data-modal-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <form class="modal-body">
+      <div class="field"><label class="label" for="inv-client">Customer</label><select class="select" id="inv-client" required><option>Amara Okafor</option><option>Bilal Qureshi</option><option>Chen Farouk</option><option>Daniela Zhang</option><option>Elif Brown</option><option>Farid López</option><option>Grace Mensah</option><option>Hamza Rahman</option></select></div>
+      <div class="form-grid mt-16">
+        <div class="field"><label class="label" for="inv-amount">Amount</label><div class="input-group"><input class="input" id="inv-amount" inputmode="decimal" placeholder="0.00" required><span class="addon">USD</span></div><span class="error-text">Enter an amount.</span></div>
+        <div class="field"><label class="label" for="inv-due">Due date</label><input class="input" id="inv-due" type="date" required></div>
+      </div>
+      <div class="field mt-16"><label class="label" for="inv-note">Note to customer</label><textarea class="textarea" id="inv-note" placeholder="Thanks for your business."></textarea></div>
+    </form>
+    <div class="modal-foot"><button class="btn" type="button" data-modal-close>Cancel</button><button class="btn btn-primary" type="button" data-modal-submit data-toast="Invoice created and sent">Create invoice</button></div>
+  </div>
+</div>
+</main>
+<footer class="footer"><span>© <span data-year>2026</span> Hisaab. All rights reserved.</span><span>Version 1.0.0</span></footer>
+</div>
+</div>
+<script src="charts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
