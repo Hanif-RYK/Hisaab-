@@ -7,7 +7,6 @@
 <meta name="description" content="Monthly calendar with events.">
 <meta name="theme-color" content="#0f6e5a">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" href="instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <script>(function(){var t;try{t=localStorage.getItem('hisaab-theme')}catch(e){}if(!t)t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);try{if(localStorage.getItem('hisaab-collapsed')==='1')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}})();</script>
 </head>
@@ -38,7 +37,7 @@
     <div class="dropdown" data-dropdown>
       <button class="icon-btn" type="button" data-dropdown-toggle aria-label="Notifications, 3 unread"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10.3 20a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dot"></span></button>
       <div class="menu" style="min-width:320px">
-        <div class="menu-head">Notifications <a href="#" class="small" data-mark-read>Mark all as read</a></div>
+        <div class="menu-head">Notifications <button type="button" class="link-btn small" data-mark-read>Mark all as read</button></div>
         <div class="notif"><span class="avatar avatar-sm" style="background:#c8657a" aria-hidden="true">DZ</span><div><p><b>Daniela Zhang</b> paid invoice INV-2026-0178</p><small>4 min ago</small></div></div><div class="notif"><span class="avatar avatar-sm" style="background:#b5654a" aria-hidden="true">HR</span><div><p><b>Hamza Rahman</b> left a 5-star review</p><small>38 min ago</small></div></div><div class="notif"><span class="avatar avatar-sm" style="background:#8a9a5b" aria-hidden="true">MC</span><div><p><b>Maya Cohen</b> asked about a late delivery</p><small>2 hours ago</small></div></div>
       </div>
     </div>
@@ -66,7 +65,7 @@
     <div class="cal-grid" aria-live="polite"></div>
     <script type="application/json">[{"day": 2, "title": "Supplier call", "time": "10:00", "type": 3}, {"day": 3, "title": "Payroll", "type": 4}, {"day": 6, "title": "Team standup", "time": "09:30", "type": 1}, {"day": 9, "title": "Autumn sale starts", "type": 2}, {"day": 9, "title": "Ads review", "time": "15:00", "type": 3}, {"day": 13, "title": "Harbor Clinics demo", "time": "11:00", "type": 1}, {"day": 15, "title": "VAT filing due", "type": 4}, {"day": 17, "title": "Photo shoot", "time": "13:00", "type": 2}, {"day": 20, "title": "Investor update", "time": "16:00", "type": 1}, {"day": 22, "title": "Stock count", "type": 3}, {"day": 24, "title": "Market stall", "time": "08:00", "type": 2}, {"day": 27, "title": "Quarterly planning", "time": "10:00", "type": 1}, {"day": 28, "title": "Invoice run", "type": 4}, {"day": 30, "title": "Team dinner", "time": "19:30", "type": 2}]</script>
   </section>
-  <aside class="span-4 stack">
+  <aside class="span-4 stack" aria-label="Upcoming events and calendars">
     <section class="card"><div class="card-head"><div><h2>Coming up</h2><p>Next 7 days</p></div></div><div class="card-body"><ul class="list"><li><div class="flex items-center gap-12"><span class="event ev-1" style="margin:0;width:6px;padding:0;height:34px;border-radius:3px"></span><div><b class="strong">Harbor Clinics demo</b><div class="small muted">Today, 11:00 – 11:45</div></div></div></li><li><div class="flex items-center gap-12"><span class="event ev-4" style="margin:0;width:6px;padding:0;height:34px;border-radius:3px"></span><div><b class="strong">VAT filing due</b><div class="small muted">Thu, all day</div></div></div></li><li><div class="flex items-center gap-12"><span class="event ev-2" style="margin:0;width:6px;padding:0;height:34px;border-radius:3px"></span><div><b class="strong">Photo shoot</b><div class="small muted">Sat, 13:00 – 17:00</div></div></div></li><li><div class="flex items-center gap-12"><span class="event ev-1" style="margin:0;width:6px;padding:0;height:34px;border-radius:3px"></span><div><b class="strong">Investor update</b><div class="small muted">Tue, 16:00</div></div></div></li></ul></div></section>
     <section class="card"><div class="card-head"><div><h2>Calendars</h2></div></div><div class="card-body"><ul class="list">
       <li><label class="check"><input type="checkbox" checked data-cal-toggle="1">Meetings</label><span class="event ev-1" style="margin:0">Green</span></li>
@@ -77,10 +76,10 @@
 </div>
 <div class="modal" id="new-event" role="dialog" aria-modal="true" aria-labelledby="ne-title" aria-hidden="true"><div class="modal-backdrop"></div>
   <div class="modal-dialog"><div class="modal-head"><h2 id="ne-title">New event</h2><button class="icon-btn" type="button" data-modal-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
-  <form class="modal-body"><div class="field"><label class="label" for="ev-t">Title</label><input class="input" id="ev-t" required placeholder="e.g. Supplier call"></div>
-  <div class="form-grid mt-16"><div class="field"><label class="label" for="ev-d">Date</label><input class="input" id="ev-d" type="date" required></div><div class="field"><label class="label" for="ev-h">Time</label><input class="input" id="ev-h" type="time"></div></div>
-  <div class="field mt-16"><label class="label" for="ev-c">Calendar</label><select class="select" id="ev-c"><option>Meetings</option><option>Store events</option><option>Operations</option><option>Finance</option></select></div></form>
-  <div class="modal-foot"><button class="btn" type="button" data-modal-close>Cancel</button><button class="btn btn-primary" type="button" data-modal-submit data-toast="Event added to your calendar">Add event</button></div></div></div>
+  <form class="modal-body" data-cal-form><div class="field"><label class="label" for="ev-t">Title</label><input class="input" id="ev-t" name="title" required placeholder="e.g. Supplier call"><span class="error-text">Give the event a title.</span></div>
+  <div class="form-grid mt-16"><div class="field"><label class="label" for="ev-d">Date</label><input class="input" id="ev-d" name="date" type="date" required><span class="error-text">Choose a date.</span></div><div class="field"><label class="label" for="ev-h">Time</label><input class="input" id="ev-h" name="time" type="time"></div></div>
+  <div class="field mt-16"><label class="label" for="ev-c">Calendar</label><select class="select" id="ev-c" name="type"><option value="1">Meetings</option><option value="2">Store events</option><option value="3">Operations</option><option value="4">Finance</option></select></div></form>
+  <div class="modal-foot"><button class="btn" type="button" data-modal-close>Cancel</button><button class="btn btn-primary" type="button" data-modal-submit data-toast="Event added to the calendar">Add event</button></div></div></div>
 </main>
 <footer class="footer"><span>© <span data-year>2026</span> Hisaab. All rights reserved.</span><span>Version 1.0.0</span></footer>
 </div>

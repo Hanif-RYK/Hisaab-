@@ -7,7 +7,6 @@
 <meta name="description" content="Account, store, notification, billing and security settings.">
 <meta name="theme-color" content="#0f6e5a">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" href="instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <script>(function(){var t;try{t=localStorage.getItem('hisaab-theme')}catch(e){}if(!t)t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);try{if(localStorage.getItem('hisaab-collapsed')==='1')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}})();</script>
 </head>
@@ -38,7 +37,7 @@
     <div class="dropdown" data-dropdown>
       <button class="icon-btn" type="button" data-dropdown-toggle aria-label="Notifications, 3 unread"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10.3 20a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dot"></span></button>
       <div class="menu" style="min-width:320px">
-        <div class="menu-head">Notifications <a href="#" class="small" data-mark-read>Mark all as read</a></div>
+        <div class="menu-head">Notifications <button type="button" class="link-btn small" data-mark-read>Mark all as read</button></div>
         <div class="notif"><span class="avatar avatar-sm" style="background:#c8657a" aria-hidden="true">DZ</span><div><p><b>Daniela Zhang</b> paid invoice INV-2026-0178</p><small>4 min ago</small></div></div><div class="notif"><span class="avatar avatar-sm" style="background:#b5654a" aria-hidden="true">HR</span><div><p><b>Hamza Rahman</b> left a 5-star review</p><small>38 min ago</small></div></div><div class="notif"><span class="avatar avatar-sm" style="background:#8a9a5b" aria-hidden="true">MC</span><div><p><b>Maya Cohen</b> asked about a late delivery</p><small>2 hours ago</small></div></div>
       </div>
     </div>
@@ -59,11 +58,11 @@
 <div class="page-head"><div><div class="crumbs"><a href="index.html">Home</a><span>Workspace</span><span>Settings</span></div><h1>Settings</h1><p>Manage your account, store details, notifications and billing.</p></div></div>
 <div class="settings-layout" data-tabs>
   <div class="side-tabs" role="tablist" aria-orientation="vertical" aria-label="Settings sections">
-    <button class="tab" role="tab" id="s1" aria-selected="true" aria-controls="sp1">Account</button>
-    <button class="tab" role="tab" id="s2" aria-selected="false" aria-controls="sp2" tabindex="-1">Store</button>
-    <button class="tab" role="tab" id="s3" aria-selected="false" aria-controls="sp3" tabindex="-1">Notifications</button>
-    <button class="tab" role="tab" id="s4" aria-selected="false" aria-controls="sp4" tabindex="-1">Billing</button>
-    <button class="tab" role="tab" id="s5" aria-selected="false" aria-controls="sp5" tabindex="-1">Security</button></div>
+    <button class="tab" type="button" role="tab" id="s1" aria-selected="true" aria-controls="sp1">Account</button>
+    <button class="tab" type="button" role="tab" id="s2" aria-selected="false" aria-controls="sp2" tabindex="-1">Store</button>
+    <button class="tab" type="button" role="tab" id="s3" aria-selected="false" aria-controls="sp3" tabindex="-1">Notifications</button>
+    <button class="tab" type="button" role="tab" id="s4" aria-selected="false" aria-controls="sp4" tabindex="-1">Billing</button>
+    <button class="tab" type="button" role="tab" id="s5" aria-selected="false" aria-controls="sp5" tabindex="-1">Security</button></div>
   <div>
     <section class="card tab-panel" id="sp1" role="tabpanel" aria-labelledby="s1"><div class="card-head"><div><h2>Account</h2><p>This information appears on invoices and emails.</p></div></div>
       <form class="card-body" data-validate data-success="Account details saved" data-saved-label="Saved">
@@ -84,14 +83,18 @@
       <div class="card-body"><div class="setting-row"><div><b class="strong">New orders</b><p>An email for every order placed in your store.</p></div><label class="switch"><input type="checkbox" checked><span class="track"></span><span class="sr-only">New orders</span></label></div><div class="setting-row"><div><b class="strong">Low stock</b><p>When a product drops below 10 units.</p></div><label class="switch"><input type="checkbox" checked><span class="track"></span><span class="sr-only">Low stock</span></label></div><div class="setting-row"><div><b class="strong">Refund requests</b><p>When a customer asks for a refund.</p></div><label class="switch"><input type="checkbox" checked><span class="track"></span><span class="sr-only">Refund requests</span></label></div><div class="setting-row"><div><b class="strong">Weekly summary</b><p>Revenue and orders every Monday morning.</p></div><label class="switch"><input type="checkbox"><span class="track"></span><span class="sr-only">Weekly summary</span></label></div><div class="setting-row"><div><b class="strong">Product updates</b><p>News about features in Hisaab.</p></div><label class="switch"><input type="checkbox"><span class="track"></span><span class="sr-only">Product updates</span></label></div></div></section>
     <section class="card tab-panel" id="sp4" role="tabpanel" aria-labelledby="s4" hidden><div class="card-head"><div><h2>Billing</h2><p>You're on the Growth plan, billed yearly.</p></div></div>
       <div class="card-body"><div class="alert alert-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5"/></svg><div>Your plan renews on <b>March 3, 2027</b> for $228.</div></div>
-      <div class="setting-row"><div class="flex items-center gap-12"><span class="thumb bg-primary-soft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><div><b class="strong">Visa ending in 4242</b><p>Expires 08/2028</p></div></div><button class="btn btn-sm" type="button" data-toast="Card details updated">Update card</button></div>
-      <div class="setting-row"><div><b class="strong">Billing email</b><p>Invoices are sent to billing@hisaab.example</p></div><button class="btn btn-sm" type="button" data-toast="Billing email saved">Change</button></div></div></section>
+      <div class="setting-row"><div class="flex items-center gap-12"><span class="thumb bg-primary-soft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><div><b class="strong">Visa ending in 4242</b><p>Expires 08/2028</p></div></div><button class="btn btn-sm" type="button" data-toast="Demo only: connect a payment provider to update cards">Update card</button></div>
+      <div class="setting-row"><div><b class="strong">Billing email</b><p>Invoices are sent to <span data-billing-email>billing@hisaab.example</span></p></div><button class="btn btn-sm" type="button" data-modal-open="billing-email">Change</button></div></div></section>
     <section class="card tab-panel" id="sp5" role="tabpanel" aria-labelledby="s5" hidden><div class="card-head"><div><h2>Security</h2><p>Keep your account safe.</p></div></div>
       <div class="card-body"><div class="setting-row"><div><b class="strong">Two-step verification</b><p>Ask for a code from your phone when you sign in.</p></div><label class="switch"><input type="checkbox" checked><span class="track"></span><span class="sr-only">Two-step verification</span></label></div><div class="setting-row"><div><b class="strong">Sign-in alerts</b><p>Email me when someone signs in from a new device.</p></div><label class="switch"><input type="checkbox" checked><span class="track"></span><span class="sr-only">Sign-in alerts</span></label></div>
       <div class="setting-row"><div><b class="strong">Password</b><p>Last changed 3 months ago</p></div><button class="btn btn-sm" type="button" data-toast="Password reset link sent">Change password</button></div>
       <div class="setting-row"><div><b class="strong" style="color:var(--danger)">Delete account</b><p>Permanently delete your store and all its data.</p></div><button class="btn btn-sm btn-danger" type="button" data-modal-open="confirm-delete">Delete account</button></div></div></section>
   </div>
 </div>
+<div class="modal" id="billing-email" role="dialog" aria-modal="true" aria-labelledby="be-title" aria-hidden="true"><div class="modal-backdrop"></div>
+  <div class="modal-dialog" style="max-width:440px"><div class="modal-head"><h2 id="be-title">Billing email</h2><button class="icon-btn" type="button" data-modal-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <form class="modal-body" data-set-text="[data-billing-email]"><div class="field"><label class="label" for="be-email">Send invoices to</label><input class="input" id="be-email" name="value" type="email" required value="billing@hisaab.example"><span class="error-text">Enter a valid email address.</span></div></form>
+  <div class="modal-foot"><button class="btn" type="button" data-modal-close>Cancel</button><button class="btn btn-primary" type="button" data-modal-submit data-toast="Billing email updated">Save email</button></div></div></div>
 <div class="modal" id="confirm-delete" role="dialog" aria-modal="true" aria-labelledby="cd-title" aria-hidden="true"><div class="modal-backdrop"></div>
   <div class="modal-dialog" style="max-width:440px"><div class="modal-body"><span class="thumb bg-danger-soft mb-16"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg></span><h2 id="cd-title">Delete your account?</h2>
   <p class="muted mt-8">This removes your store, 1,284 orders and 2,418 customers. You can't undo this.</p></div>

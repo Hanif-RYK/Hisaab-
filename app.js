@@ -32,8 +32,19 @@
       setTimeout(function () { window.HisaabCharts && window.HisaabCharts.renderAll(); }, 30);
     });
   });
-  $$("[data-sidebar-open]").forEach(function (b) { b.addEventListener("click", function () { root.classList.add("sidebar-open"); }); });
-  $$("[data-sidebar-close], .sidebar-backdrop").forEach(function (b) { b.addEventListener("click", function () { root.classList.remove("sidebar-open"); }); });
+  $$("[data-sidebar-open]").forEach(function (b) {
+    b.setAttribute("aria-expanded", "false");
+    b.addEventListener("click", function () {
+      root.classList.add("sidebar-open"); b.setAttribute("aria-expanded", "true");
+      var first = $(".sidebar a"); if (first) setTimeout(function () { first.focus(); }, 60);
+    });
+  });
+  function closeDrawer() {
+    if (!root.classList.contains("sidebar-open")) return;
+    root.classList.remove("sidebar-open");
+    var ob = $("[data-sidebar-open]"); if (ob) { ob.setAttribute("aria-expanded", "false"); if (getComputedStyle(ob).display !== "none") ob.focus(); }
+  }
+  $$("[data-sidebar-close], .sidebar-backdrop").forEach(function (b) { b.addEventListener("click", closeDrawer); });
 
   /* Dropdowns ------------------------------------------------------------ */
   $$("[data-dropdown]").forEach(function (dd) {
@@ -62,22 +73,45 @@
     lastFocus = document.activeElement;
     m.classList.add("open");
     m.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
     var f = $("input, select, textarea, button:not([data-modal-close])", m);
     if (f) setTimeout(function () { if (!m.contains(document.activeElement)) f.focus(); }, 30);
   }
   function closeModal(m) {
     m.classList.remove("open");
     m.setAttribute("aria-hidden", "true");
+    if (!$(".modal.open")) document.body.style.overflow = "";
     if (lastFocus) lastFocus.focus();
   }
   $$("[data-modal-open]").forEach(function (b) { b.addEventListener("click", function () { openModal(b.getAttribute("data-modal-open")); }); });
   $$("[data-modal-close]").forEach(function (b) { b.addEventListener("click", function () { closeModal(b.closest(".modal")); }); });
   $$(".modal-backdrop").forEach(function (b) { b.addEventListener("click", function () { closeModal(b.closest(".modal")); }); });
+  // Pressing Enter inside a modal form runs the modal's main button instead of reloading the page
+  $$(".modal form").forEach(function (f) {
+    function run() { var b = $("[data-modal-submit]", f.closest(".modal")); if (b) b.click(); }
+    f.addEventListener("submit", function (e) { e.preventDefault(); run(); });
+    f.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && e.target.tagName === "INPUT" && !/checkbox|radio|file|button|submit/.test(e.target.type)) { e.preventDefault(); run(); }
+    });
+  });
   document.addEventListener("keydown", function (e) {
+    var openM = $(".modal.open");
+    if (e.key === "Tab" && openM) {
+      // Keep keyboard focus inside the open modal
+      var f = $$("a[href], button:not([disabled]), input:not([disabled]):not([type=hidden]), select, textarea, [tabindex]:not([tabindex='-1'])", openM).filter(function (x) { return x.offsetParent !== null; });
+      if (f.length) {
+        var first = f[0], last = f[f.length - 1];
+        if (!openM.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+        else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
     if (e.key === "Escape") {
+      var openDd = $("[data-dropdown].open");
       $$(".modal.open").forEach(closeModal);
       closeDropdowns();
-      root.classList.remove("sidebar-open");
+      if (openDd && openDd.contains(document.activeElement)) { var tg = $("[data-dropdown-toggle]", openDd); if (tg) tg.focus(); }
+      closeDrawer();
     }
     var typing = /input|textarea|select/i.test((e.target.tagName || "")) || e.target.isContentEditable;
     if (((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") || (e.key === "/" && !typing)) {
@@ -106,6 +140,12 @@
         var form = $("form", m);
         if (form && !validate(form)) return;
         if (form && form.hasAttribute("data-add-to")) addFromForm(form);
+        if (form && form.hasAttribute("data-set-text")) {
+          var field = $("[name=value]", form);
+          $$(form.getAttribute("data-set-text")).forEach(function (el) { el.textContent = field.value.trim(); });
+          field.defaultValue = field.value.trim();
+        }
+        if (form) form.dispatchEvent(new CustomEvent("hisaab:submit", { bubbles: true }));
         if (form) form.reset();
         closeModal(m);
       }
@@ -226,37 +266,125 @@
     apply();
   });
 
-  /* Kanban drag & drop --------------------------------------------------- */
+  /* Tooltips: keep the bubble inside the screen on small devices */
+  $$(".tooltip-wrap").forEach(function (w) {
+    var tip = $('[role="tooltip"]', w); if (!tip) return;
+    function fit() {
+      tip.style.marginLeft = "";
+      var r = tip.getBoundingClientRect(), vw = document.documentElement.clientWidth, shift = 0;
+      if (r.left < 8) shift = 8 - r.left; else if (r.right > vw - 8) shift = vw - 8 - r.right;
+      if (shift) tip.style.marginLeft = shift + "px";
+    }
+    w.addEventListener("mouseenter", fit); w.addEventListener("focusin", fit);
+  });
+
+  /* Tables that scroll sideways can be scrolled with the keyboard */
+  function markScrollable() {
+    $$(".table-wrap").forEach(function (w) {
+      if (w.scrollWidth > w.clientWidth + 1) { w.setAttribute("tabindex", "0"); if (!w.hasAttribute("aria-label")) w.setAttribute("aria-label", "Scrollable table"); w.setAttribute("role", "region"); }
+      else { w.removeAttribute("tabindex"); w.removeAttribute("role"); }
+    });
+  }
+  markScrollable();
+  var rsT; window.addEventListener("resize", function () { clearTimeout(rsT); rsT = setTimeout(markScrollable, 150); });
+
+  /* Kanban: drag & drop (mouse and touch), keyboard moves, add and sort --- */
   $$("[data-kanban]").forEach(function (board) {
     var dragging = null;
-    function counts() { $$(".column", board).forEach(function (c) { var n = $(".column-count", c); if (n) n.textContent = $$(".task", c).length; }); }
+    var cols = function () { return $$(".column", board); };
+    function counts() { cols().forEach(function (c) { var n = $(".column-count", c); if (n) n.textContent = $$(".task", c).length; }); }
+    function colName(c) { var h = $("h3", c); return h ? h.childNodes[1] ? h.childNodes[1].textContent.trim() : h.textContent.trim() : ""; }
+    function placeAt(list, y, el) {
+      var after = $$(".task:not(.dragging):not(.touch-drag)", list).find(function (t) { var r = t.getBoundingClientRect(); return y < r.top + r.height / 2; });
+      if (after) list.insertBefore(el, after); else list.appendChild(el);
+    }
     function bindTask(t) {
       t.setAttribute("draggable", "true");
+      t.setAttribute("tabindex", "0");
       t.addEventListener("dragstart", function (e) { dragging = t; t.classList.add("dragging"); e.dataTransfer.effectAllowed = "move"; try { e.dataTransfer.setData("text/plain", ""); } catch (x) {} });
       t.addEventListener("dragend", function () { t.classList.remove("dragging"); dragging = null; $$(".column-list", board).forEach(function (l) { l.classList.remove("is-over"); }); counts(); });
+      // Keyboard: arrow keys move the focused card
+      t.addEventListener("keydown", function (e) {
+        var list = t.parentElement, col = t.closest(".column"), all = cols(), ci = all.indexOf(col);
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+          var to = all[ci + (e.key === "ArrowRight" ? 1 : -1)]; if (!to) return;
+          e.preventDefault(); $(".column-list", to).appendChild(t); t.focus(); counts(); toast("Moved to " + colName(to));
+        } else if (e.key === "ArrowUp" && t.previousElementSibling) { e.preventDefault(); list.insertBefore(t, t.previousElementSibling); t.focus(); }
+        else if (e.key === "ArrowDown" && t.nextElementSibling) { e.preventDefault(); list.insertBefore(t.nextElementSibling, t); t.focus(); }
+      });
+      // Touch: press and hold for a moment, then drag
+      var hold = null, sx = 0, sy = 0, ghost = null, ph = null, offX = 0, offY = 0;
+      t.addEventListener("touchstart", function (e) {
+        var p = e.touches[0]; sx = p.clientX; sy = p.clientY;
+        hold = setTimeout(function () {
+          var r = t.getBoundingClientRect(); offX = sx - r.left; offY = sy - r.top;
+          ph = document.createElement("div"); ph.className = "task-placeholder"; ph.style.height = r.height + "px";
+          t.parentElement.insertBefore(ph, t);
+          ghost = t; ghost.classList.add("touch-drag"); ghost.style.width = r.width + "px"; ghost.style.left = r.left + "px"; ghost.style.top = r.top + "px";
+          if (navigator.vibrate) navigator.vibrate(15);
+        }, 220);
+      }, { passive: true });
+      t.addEventListener("touchmove", function (e) {
+        var p = e.touches[0];
+        if (!ghost) { if (Math.abs(p.clientX - sx) > 8 || Math.abs(p.clientY - sy) > 8) clearTimeout(hold); return; }
+        e.preventDefault();
+        ghost.style.left = (p.clientX - offX) + "px"; ghost.style.top = (p.clientY - offY) + "px";
+        var under = document.elementFromPoint(p.clientX, p.clientY), list = under && under.closest(".column-list");
+        $$(".column-list", board).forEach(function (l) { l.classList.toggle("is-over", l === list); });
+        if (list) placeAt(list, p.clientY, ph);
+        // Scroll the board sideways when the finger nears the edge
+        if (p.clientX > window.innerWidth - 40) board.scrollLeft += 12; else if (p.clientX < 40) board.scrollLeft -= 12;
+      }, { passive: false });
+      function endTouch() {
+        clearTimeout(hold);
+        if (!ghost) return;
+        ph.parentElement.insertBefore(ghost, ph); ph.remove();
+        ghost.classList.remove("touch-drag"); ghost.style.cssText = ""; ghost = null; ph = null;
+        $$(".column-list", board).forEach(function (l) { l.classList.remove("is-over"); }); counts();
+      }
+      t.addEventListener("touchend", endTouch); t.addEventListener("touchcancel", endTouch);
     }
     $$(".task", board).forEach(bindTask);
     $$(".column-list", board).forEach(function (list) {
-      list.addEventListener("dragover", function (e) {
-        e.preventDefault();
-        list.classList.add("is-over");
-        if (!dragging) return;
-        var after = $$(".task:not(.dragging)", list).find(function (t) { var r = t.getBoundingClientRect(); return e.clientY < r.top + r.height / 2; });
-        if (after) list.insertBefore(dragging, after); else list.appendChild(dragging);
-      });
+      list.addEventListener("dragover", function (e) { e.preventDefault(); list.classList.add("is-over"); if (dragging) placeAt(list, e.clientY, dragging); });
       list.addEventListener("dragleave", function (e) { if (!list.contains(e.relatedTarget)) list.classList.remove("is-over"); });
       list.addEventListener("drop", function (e) { e.preventDefault(); list.classList.remove("is-over"); });
     });
-    $$(".add-task", board).forEach(function (b) {
-      b.addEventListener("click", function () {
-        var title = window.prompt("Task title");
-        if (!title) return;
+    // "+ Add task": a small inline form (works inside preview frames where pop-up prompts are blocked)
+    function openAdd(col) {
+      var btn = $(".add-task", col);
+      if ($(".add-task-form", col)) { $(".add-task-form input", col).focus(); return; }
+      var f = document.createElement("form");
+      f.className = "add-task-form";
+      f.innerHTML = '<label class="sr-only">Task title</label><input class="input" maxlength="120" placeholder="Task title" required>' +
+        '<div class="flex gap-8"><button class="btn btn-sm" type="button">Cancel</button><button class="btn btn-sm btn-primary" type="submit">Add</button></div>';
+      var input = $("input", f), id = "nt-" + Math.random().toString(36).slice(2, 7);
+      input.id = id; $("label", f).setAttribute("for", id);
+      btn.hidden = true; btn.parentElement.insertBefore(f, btn); input.focus();
+      function close() { f.remove(); btn.hidden = false; btn.focus(); }
+      $("button[type=button]", f).addEventListener("click", close);
+      input.addEventListener("keydown", function (e) { if (e.key === "Escape") { e.stopPropagation(); close(); } });
+      f.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var title = input.value.trim(); if (!title) { input.focus(); return; }
         var t = document.createElement("article");
         t.className = "task";
         t.innerHTML = '<span class="badge badge-info">New</span><h4></h4><div class="task-meta"><span>Just added</span></div>';
         $("h4", t).textContent = title;
-        $(".column-list", b.closest(".column")).appendChild(t);
-        bindTask(t); counts(); toast("Task added");
+        $(".column-list", col).appendChild(t);
+        bindTask(t); counts(); toast("Task added to " + colName(col));
+        input.value = ""; input.focus();
+      });
+    }
+    $$(".add-task", board).forEach(function (b) { b.addEventListener("click", function () { openAdd(b.closest(".column")); }); });
+    // Column menu actions
+    var months = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
+    function due(t) { var m = (t.querySelector(".task-meta span") || {}).textContent || ""; var x = m.trim().match(/([A-Z][a-z]{2}) (\d{1,2})/); return x && x[1] in months ? months[x[1]] * 31 + +x[2] : 9999; }
+    $$("[data-col-action]", board).forEach(function (b) {
+      b.addEventListener("click", function () {
+        var col = b.closest(".column"); closeDropdowns();
+        if (b.getAttribute("data-col-action") === "add") openAdd(col);
+        else { var list = $(".column-list", col); $$(".task", list).sort(function (a, c) { return due(a) - due(c); }).forEach(function (t) { list.appendChild(t); }); toast(colName(col) + " sorted by due date"); }
       });
     });
     counts();
@@ -281,7 +409,8 @@
         cell.innerHTML = '<span class="d">' + d.getDate() + "</span>";
         events.forEach(function (ev) {
           // Demo events are placed relative to the current month so the calendar never looks empty.
-          if (d.getMonth() === view.getMonth() && d.getDate() === ev.day) {
+          var match = ev.date ? ev.date === iso(d) : (d.getMonth() === view.getMonth() && d.getDate() === ev.day);
+          if (match) {
             var e = document.createElement("span");
             e.className = "event ev-" + (ev.type || 1);
             e.textContent = (ev.time ? ev.time + " " : "") + ev.title;
@@ -292,6 +421,16 @@
         grid.appendChild(cell);
       }
     }
+    function iso(d) { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+    // Events added with the "New event" form (kept until the page is reloaded)
+    $$("[data-cal-form]").forEach(function (f) {
+      f.addEventListener("hisaab:submit", function () {
+        var v = function (n) { var el = $("[name=" + n + "]", f); return el ? el.value.trim() : ""; };
+        if (!v("date")) return;
+        events.push({ date: v("date"), title: v("title"), time: v("time"), type: +v("type") || 1 });
+        var p = v("date").split("-"); view = new Date(+p[0], +p[1] - 1, 1); draw();
+      });
+    });
     $$("[data-cal-nav]", cal).forEach(function (b) {
       b.addEventListener("click", function () {
         var n = b.getAttribute("data-cal-nav");
@@ -353,11 +492,18 @@
     z.addEventListener("drop", function (e) { show(e.dataTransfer.files); });
   });
   $$("[data-print]").forEach(function (b) { b.addEventListener("click", function () { window.print(); }); });
+  function copyText(text) {
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+      ta.remove(); toast(ok ? "Link copied to clipboard" : "Copy failed — select the address bar and copy it manually");
+    }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(function () { toast("Link copied to clipboard"); }, fallback);
+    else fallback();
+  }
   $$("[data-copy]").forEach(function (b) {
-    b.addEventListener("click", function () {
-      var text = b.getAttribute("data-copy");
-      if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { toast("Copied to clipboard"); }, function () { toast("Copy failed — select the text and copy it manually"); });
-    });
+    b.addEventListener("click", function () { copyText(b.getAttribute("data-copy") || location.href); });
   });
 
 

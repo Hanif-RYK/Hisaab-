@@ -11,6 +11,7 @@
   .doc-nav { position: sticky; top: 0; height: 100vh; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--line); padding: 20px 14px; }
   .doc-nav a { display: block; padding: 6px 10px; border-radius: 8px; color: var(--ink-2); font-size: 14px; }
   .doc-nav a:hover { background: var(--surface-2); text-decoration: none; }
+  .doc-main a { text-decoration: underline; text-underline-offset: 2px; }
   .doc-main { padding: 40px clamp(20px, 5vw, 64px); max-width: 860px; }
   .doc-main section { padding-top: 12px; margin-bottom: 40px; }
   .doc-main h2 { font-size: 24px; margin-bottom: 12px; padding-top: 8px; }
@@ -29,6 +30,7 @@
   <nav class="doc-nav" aria-label="Documentation">
     <a class="brand" href="index.html" style="padding:0 10px 14px;height:auto;border:0"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="var(--primary)"/><path d="M10 14h20M10 20h20M10 26h13" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M15 9v22" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/></svg><span class="brand-name">Hisaab</span></a>
     <a href="#start">Getting started</a>
+    <a href="#included">What is included</a>
     <a href="#files">Files and folders</a>
     <a href="#pages">Pages</a>
     <a href="#brand">Change colours and logo</a>
@@ -38,6 +40,7 @@
     <a href="#charts">Charts</a>
     <a href="#components">Interactive components</a>
     <a href="#forms">Forms and validation</a>
+    <a href="#demo">Demo data and limits</a>
     <a href="#deploy">Publishing your site</a>
     <a href="#browsers">Browser support</a>
     <a href="#credits">Credits and licences</a>
@@ -46,7 +49,7 @@
   </nav>
   <main class="doc-main">
     <h1>Hisaab documentation</h1>
-    <p>Hisaab is a business admin dashboard template made with plain HTML, CSS and JavaScript. There is nothing to install and no build step: open a file in your browser and it works. Version 1.0.0.</p>
+    <p>Hisaab is a business operations admin dashboard: sales, CRM, orders, products, customers, invoices, a calendar and a task board in 18 pages. It is made with plain HTML, CSS and vanilla JavaScript. There is nothing to install and no build step: open a file in your browser and it works. Version 1.0.0.</p>
 
     <section id="start"><h2>Getting started</h2>
       <ol>
@@ -57,8 +60,26 @@
       <p>Everything works offline. Fonts, icons and charts are included in the package, so the template does not load anything from the internet.</p>
     </section>
 
+    <section id="included"><h2>What is included</h2>
+      <div class="card card-flush"><div class="table-wrap"><table class="table">
+        <thead><tr><th>Feature</th><th>Included</th></tr></thead>
+        <tbody>
+          <tr><td>18 pages and all UI components</td><td>Yes</td></tr>
+          <tr><td>Responsive layout and dark mode</td><td>Yes</td></tr>
+          <tr><td>Charts (line, area, bar, stacked, donut, sparkline)</td><td>Yes</td></tr>
+          <tr><td>Table search, filter, sort, pagination and row actions</td><td>Yes</td></tr>
+          <tr><td>CSV export</td><td>Yes</td></tr>
+          <tr><td>Add-record modals, kanban, calendar</td><td>Yes, in the browser (not saved after reload)</td></tr>
+          <tr><td>CSV import</td><td>Demo only: reads the chosen file and reports the number of rows</td></tr>
+          <tr><td>Sign in, sign up, reset password</td><td>Front-end screens only</td></tr>
+          <tr><td>Database, API, backend</td><td>No</td></tr>
+          <tr><td>Payment processing</td><td>No</td></tr>
+        </tbody></table></div></div>
+      <p>See <a href="#demo">Demo data and limits</a> for details.</p>
+    </section>
+
     <section id="files"><h2>Files and folders</h2>
-<pre><code>Hisaab/
+<pre tabindex="0"><code>Hisaab/
 ├── index.html              Overview dashboard
 ├── sales.html, crm.html    Two more dashboards
 ├── orders.html …           Business, workspace and interface pages (18 in total)
@@ -78,22 +99,22 @@
           <tr><td>Overview</td><td><code>index.html</code></td><td>Key figures, revenue chart, sales channels, recent orders, activity, top products</td></tr>
           <tr><td>Sales</td><td><code>sales.html</code></td><td>Revenue by channel, checkout funnel, traffic, countries, categories</td></tr>
           <tr><td>CRM</td><td><code>crm.html</code></td><td>Deal stages, open deals, follow-ups, pipeline chart, team leaderboard</td></tr>
-          <tr><td>Orders</td><td><code>orders.html</code></td><td>Searchable, sortable, filterable table with pagination</td></tr>
-          <tr><td>Products</td><td><code>products.html</code></td><td>Inventory table, low-stock alert, add-product modal with upload</td></tr>
-          <tr><td>Customers</td><td><code>customers.html</code></td><td>Customer cards with orders, spend and rating</td></tr>
+          <tr><td>Orders</td><td><code>orders.html</code></td><td>Searchable, sortable, filterable table with pagination, row actions and CSV export</td></tr>
+          <tr><td>Products</td><td><code>products.html</code></td><td>Inventory table, low-stock alert, add-product modal, CSV import demo</td></tr>
+          <tr><td>Customers</td><td><code>customers.html</code></td><td>Customer cards with search, type filter, add-customer modal and CSV export</td></tr>
           <tr><td>Invoices</td><td><code>invoices.html</code>, <code>invoice-detail.html</code></td><td>Invoice list and a printable invoice</td></tr>
-          <tr><td>Calendar</td><td><code>calendar.html</code></td><td>Month view with events and month navigation</td></tr>
-          <tr><td>Tasks</td><td><code>tasks.html</code></td><td>Kanban board with drag and drop</td></tr>
+          <tr><td>Calendar</td><td><code>calendar.html</code></td><td>Month view with events, month navigation, calendar filters and a new-event form</td></tr>
+          <tr><td>Tasks</td><td><code>tasks.html</code></td><td>Kanban board: drag with a mouse, press and hold on touch screens, or use arrow keys</td></tr>
           <tr><td>Profile, Settings</td><td><code>profile.html</code>, <code>settings.html</code></td><td>Profile with tabs; settings with account, store, notifications, billing, security</td></tr>
           <tr><td>Components, Forms</td><td><code>components.html</code>, <code>forms.html</code></td><td>Every UI element and form control, ready to copy</td></tr>
-          <tr><td>Auth</td><td><code>login.html</code>, <code>register.html</code>, <code>forgot-password.html</code></td><td>Sign in, create account, reset password</td></tr>
+          <tr><td>Auth</td><td><code>login.html</code>, <code>register.html</code>, <code>forgot-password.html</code></td><td>Sign in, create account and reset password screens with field validation. They are front-end only: any valid input opens the dashboard. Connect them to your own authentication.</td></tr>
           <tr><td>Error</td><td><code>404.html</code></td><td>Page not found</td></tr>
         </tbody></table></div></div>
     </section>
 
     <section id="brand"><h2>Change colours and logo</h2>
-      <p>All colours are CSS variables at the top of <code>assets/css/style.css</code>. Change <code>--primary</code> and <code>--accent</code> to rebrand the whole template. Dark mode colours live in the <code>[data-theme="dark"]</code> block just below.</p>
-<pre><code>:root {
+      <p>All colours are CSS variables at the top of <code>assets/css/style.css</code>. To rebrand, change the four brand variables below. The first two chart colours follow <code>--primary</code> and <code>--accent</code> automatically. Dark mode has its own lighter versions of the same variables in the <code>[data-theme="dark"]</code> block just below; change those too.</p>
+<pre tabindex="0"><code>:root {
   --primary: #0f6e5a;        /* buttons, links, active menu, charts */
   --primary-strong: #0a5545; /* hover state */
   --primary-soft: #e3f1ec;   /* light backgrounds */
@@ -116,7 +137,7 @@
 
     <section id="charts"><h2>Charts</h2>
       <p>Charts are drawn by <code>assets/js/charts.js</code> from a JSON object in the <code>data-chart</code> attribute. They redraw on resize and when the theme changes, and show a tooltip on hover.</p>
-<pre><code>&lt;div class="chart" data-chart='{
+<pre tabindex="0"><code>&lt;div class="chart" data-chart='{
   "type": "area",
   "height": 280,
   "prefix": "$", "suffix": "k",
@@ -144,13 +165,14 @@
           <tr><td>Tabs</td><td><code>data-tabs</code> on the wrapper; buttons with <code>role="tab"</code> and <code>aria-controls</code></td></tr>
           <tr><td>Toast message</td><td><code>data-toast="Saved"</code> on any button, or call <code>hisaabToast("Saved")</code></td></tr>
           <tr><td>Data table</td><td><code>data-table</code> on the card; <code>data-table-search</code>, <code>data-table-filter</code>, <code>data-sort</code> on headers, <code>data-per-page</code></td></tr>
-          <tr><td>Kanban board</td><td><code>data-kanban</code> on the board</td></tr>
+          <tr><td>Kanban board</td><td><code>data-kanban</code> on the board. Cards can be dragged with a mouse, moved on touch screens by pressing and holding a card, or moved with the keyboard: focus a card and use the arrow keys</td></tr>
+          <tr><td>Copy a link</td><td><code>data-copy="text"</code> copies the text; an empty <code>data-copy=""</code> copies the current page address</td></tr>
           <tr><td>Calendar</td><td><code>data-calendar</code>; events in a <code>&lt;script type="application/json"&gt;</code> inside it</td></tr>
           <tr><td>Print</td><td><code>data-print</code> on a button</td></tr>
           <tr><td>Export CSV</td><td><code>data-export="orders.csv"</code> plus <code>data-export-table</code> (visible table rows), <code>data-export-chart="#chartId"</code> (chart data) or <code>data-export-items=".cust"</code> (items with a <code>data-csv</code> JSON attribute)</td></tr>
           <tr><td>Add a row from a modal form</td><td>On the modal's form: <code>data-add-to="#table"</code> and <code>data-template="tpl-id"</code>. The <code>&lt;template&gt;</code> uses <code>{name}</code> for each named field, plus <code>{today}</code>, <code>{id}</code>, <code>{initials}</code> and <code>{money}</code></td></tr>
           <tr><td>Row actions</td><td><code>data-row-action="status|Shipped|info"</code> changes the badge in the row's <code>data-status-cell</code>; <code>data-row-action="remove"</code> removes the row. <code>data-done</code> sets the toast</td></tr>
-          <tr><td>CSV import</td><td><code>data-import</code> on a button inside a modal with a file dropzone. Reads the file and reports the row count; connect it to your backend to save</td></tr>
+          <tr><td>CSV import</td><td><code>data-import</code> on a button inside a modal with a file dropzone. Demo only: it reads the chosen CSV file in the browser and reports how many rows it found. Nothing is saved; send the file to your own backend to import it</td></tr>
           <tr><td>Filter cards</td><td><code>data-filter-list=".item"</code> on a wrapper with a <code>data-filter-search</code> input and <code>data-filter-tag="VIP"</code> buttons. Items need <code>data-tag</code></td></tr>
           <tr><td>Saved state on a form</td><td><code>data-saved-label="Saved"</code> on a <code>data-validate</code> form, and an optional <code>&lt;span data-saved-note hidden&gt;</code></td></tr>
           <tr><td>Date range menu</td><td><code>data-range</code> on a dropdown, <code>data-range-option</code> on its items and <code>data-range-label</code> on the button text</td></tr>
@@ -160,7 +182,18 @@
 
     <section id="forms"><h2>Forms and validation</h2>
       <p>Add <code>data-validate</code> to a <code>&lt;form&gt;</code>. Fields with <code>required</code> are checked on submit and an <code>.error-text</code> message after the field is shown when it is empty or invalid. Use <code>data-success="Message"</code> to show a toast and <code>data-redirect="page.html"</code> to go to another page after a valid submit.</p>
-      <p>The forms are front-end only. To save data, send the form to your own server or a form service.</p>
+      <p>All forms are front-end only: they check the fields in the browser and show a message, but nothing is sent or saved. To store data, send the form to your own backend or a form service.</p>
+    </section>
+
+    <section id="demo"><h2>Demo data and limits</h2>
+      <p>Hisaab is a front-end template. It has no server, database, user accounts or payment system, so nothing you do in the demo is saved.</p>
+      <ul>
+        <li><b class="strong">Where the demo data lives:</b> names, orders, products and invoices are written directly in each HTML file. Edit or delete the table rows and cards to use your own data. Chart numbers are in the <code>data-chart</code> attribute (see <a href="#charts">Charts</a>), and calendar events are in the JSON block inside <code>calendar.html</code>.</li>
+        <li><b class="strong">Added and changed items</b> (new orders, products, customers, invoices, deals, tasks, events and status changes) appear straight away but disappear when the page is reloaded. Connect your own backend or API to store them.</li>
+        <li><b class="strong">Works fully in the browser:</b> search, filters, sorting, pagination, CSV export, theme switching, the calendar, the kanban board and form validation.</li>
+        <li><b class="strong">Needs your backend:</b> signing in and creating accounts (the auth pages only check the fields and open the dashboard), sending emails and reminders, saving settings, importing CSV files (the demo only reads the file and counts the rows) and updating payment cards.</li>
+        <li><b class="strong">Terms and privacy:</b> the sign-up page mentions Terms of service and a Privacy policy as plain text. Link them to your own pages when you publish.</li>
+      </ul>
     </section>
 
     <section id="deploy"><h2>Publishing your site</h2>
@@ -174,17 +207,17 @@
     <section id="credits"><h2>Credits and licences</h2>
       <ul>
         <li>Bricolage Grotesque and Instrument Sans: SIL Open Font License 1.1. Licence files are in <code>assets/fonts</code>.</li>
-        <li>Icons, logo, charts and all other code and artwork: created for Hisaab and covered by your purchase licence.</li>
+        <li>Icons, logo, charts and all other code and artwork: created for Hisaab and covered by <code>LICENSE.txt</code>.</li>
         <li>All names, companies and figures in the demo are fictional.</li>
       </ul>
     </section>
 
     <section id="support"><h2>Support</h2>
-      <p>If something doesn't work as described here, send a message through the marketplace where you bought Hisaab. Include the page name, your browser and a screenshot, and you'll get a reply within two working days.</p>
+      <p>If something doesn't work as described here, send a message through the support or comments page of the store where you bought Hisaab. Include the page name, your browser and a screenshot, and you'll get a reply within two working days.</p>
     </section>
 
     <section id="changelog"><h2>Changelog</h2>
-      <p><b class="strong">1.0.0</b>: first release. 18 pages, light and dark mode, SVG charts, data tables, kanban, calendar, forms.</p>
+      <p><b class="strong">1.0.0</b>: first release. 18 pages, light and dark mode, SVG charts, data tables, kanban, calendar, forms, CSV export and import, add-record modals and row actions. Keyboard and touch friendly.</p>
     </section>
   </main>
 </div>

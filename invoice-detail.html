@@ -7,7 +7,6 @@
 <meta name="description" content="Printable invoice detail page.">
 <meta name="theme-color" content="#0f6e5a">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" href="instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <script>(function(){var t;try{t=localStorage.getItem('hisaab-theme')}catch(e){}if(!t)t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);try{if(localStorage.getItem('hisaab-collapsed')==='1')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}})();</script>
 </head>
@@ -38,7 +37,7 @@
     <div class="dropdown" data-dropdown>
       <button class="icon-btn" type="button" data-dropdown-toggle aria-label="Notifications, 3 unread"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10.3 20a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dot"></span></button>
       <div class="menu" style="min-width:320px">
-        <div class="menu-head">Notifications <a href="#" class="small" data-mark-read>Mark all as read</a></div>
+        <div class="menu-head">Notifications <button type="button" class="link-btn small" data-mark-read>Mark all as read</button></div>
         <div class="notif"><span class="avatar avatar-sm" style="background:#c8657a" aria-hidden="true">DZ</span><div><p><b>Daniela Zhang</b> paid invoice INV-2026-0178</p><small>4 min ago</small></div></div><div class="notif"><span class="avatar avatar-sm" style="background:#b5654a" aria-hidden="true">HR</span><div><p><b>Hamza Rahman</b> left a 5-star review</p><small>38 min ago</small></div></div><div class="notif"><span class="avatar avatar-sm" style="background:#8a9a5b" aria-hidden="true">MC</span><div><p><b>Maya Cohen</b> asked about a late delivery</p><small>2 hours ago</small></div></div>
       </div>
     </div>
@@ -61,15 +60,15 @@
   <div class="invoice-top">
     <div class="flex items-center gap-12"><svg width="44" height="44" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="var(--primary)"/><path d="M10 14h20M10 20h20M10 26h13" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M15 9v22" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/></svg>
       <div><b class="strong" style="font-size:18px">Hisaab Studio</b><div class="small muted">14 Mall Road, Lahore 54000<br>billing@hisaab.example</div></div></div>
-    <div class="text-right"><h1>Invoice</h1><div class="muted">INV-2026-0178</div><span class="badge badge-success mt-8">Paid</span></div>
+    <div class="text-right"><h2 class="invoice-title">Invoice</h2><div class="muted">INV-2026-0178</div><span class="badge badge-success mt-8">Paid</span></div>
   </div>
   <div class="invoice-meta">
-    <div><h4>Billed to</h4><p><b>Daniela Zhang</b><br>Zhang &amp; Partners<br>Berlin<br>daniela.zhang@company.io</p></div>
-    <div><h4>Dates</h4><p>Issued <b>Sep 28, 2026</b><br>Due <b>Oct 12, 2026</b><br>Paid <b>Oct 12, 2026</b></p></div>
-    <div><h4>Payment</h4><p>Bank transfer<br>Reference <b>HS-178-ZHANG</b><br>Currency <b>USD</b></p></div>
+    <div><h3>Billed to</h3><p><b>Daniela Zhang</b><br>Zhang &amp; Partners<br>Berlin<br>daniela.zhang@company.io</p></div>
+    <div><h3>Dates</h3><p>Issued <b>Sep 28, 2026</b><br>Due <b>Oct 12, 2026</b><br>Paid <b>Oct 12, 2026</b></p></div>
+    <div><h3>Payment</h3><p>Bank transfer<br>Reference <b>HS-178-ZHANG</b><br>Currency <b>USD</b></p></div>
   </div>
   <div class="table-wrap"><table class="table"><thead><tr><th>Item</th><th class="right">Qty</th><th class="right">Rate</th><th class="right">Amount</th></tr></thead><tbody><tr><td><b class="strong">Brand identity refresh</b><div class="small muted">Logo, colour palette and type system</div></td><td class="right num">1</td><td class="right num">$1,200</td><td class="right strong num">$1,200</td></tr><tr><td><b class="strong">Website design</b><div class="small muted">Home, about and 4 inner pages</div></td><td class="right num">1</td><td class="right num">$1,850</td><td class="right strong num">$1,850</td></tr><tr><td><b class="strong">Product photography</b><div class="small muted">Half-day shoot, 24 edited photos</div></td><td class="right num">1</td><td class="right num">$640</td><td class="right strong num">$640</td></tr><tr><td><b class="strong">Monthly maintenance</b><div class="small muted">October, updates and backups</div></td><td class="right num">2</td><td class="right num">$90</td><td class="right strong num">$180</td></tr></tbody></table></div>
-  <div class="totals"><div><span>Subtotal</span><span class="num">$3,870</span></div><div><span>Tax (8%)</span><span class="num">$310</span></div><div><span>Discount</span><span class="num">−$0</span></div><div class="grand"><span>Total</span><span class="num">$4,180</span></div></div>
+  <div class="totals"><div><span>Subtotal</span><span class="num">$3,870</span></div><div><span>Tax (8%)</span><span class="num">$310</span></div><div class="grand"><span>Total</span><span class="num">$4,180</span></div></div>
   <hr><p class="small muted mb-0">Thank you for your business. Questions about this invoice? Reply to the email it came with and we'll get back to you within one working day.</p>
 </article>
 </main>
