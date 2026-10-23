@@ -638,6 +638,18 @@
       o.addEventListener("click", function () {
         $("[data-range-label]", dd).textContent = o.textContent;
         closeDropdowns();
+        // Optional: data-range-chart="#id" + data-months="N" shows only the last N points of that chart
+        var chart = dd.hasAttribute("data-range-chart") ? $(dd.getAttribute("data-range-chart")) : null, n = +o.getAttribute("data-months");
+        if (chart && n && window.HisaabCharts) {
+          if (!chart.hasAttribute("data-chart-full")) chart.setAttribute("data-chart-full", chart.getAttribute("data-chart"));
+          var cfg = JSON.parse(chart.getAttribute("data-chart-full"));
+          cfg.labels = cfg.labels.slice(-n);
+          (cfg.series || []).forEach(function (s) { s.data = s.data.slice(-n); });
+          chart.setAttribute("data-chart", JSON.stringify(cfg));
+          window.HisaabCharts.render(chart);
+          var note = $("[data-range-note]", chart.closest(".card"));
+          if (note) note.textContent = o.textContent.toLowerCase();
+        }
         toast("Showing " + o.textContent.toLowerCase());
       });
     });
