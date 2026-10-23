@@ -43,7 +43,7 @@
     </div>
     <div class="dropdown" data-dropdown>
       <button class="user-btn" type="button" data-dropdown-toggle aria-label="Account menu">
-        <span class="avatar avatar-sm" style="background:#0f6e5a" aria-hidden="true">HR</span><span class="who"><b>Hanif Rehman</b><small>Owner</small></span></button>
+        <span class="avatar avatar-sm" style="background:#0f6e5a" aria-hidden="true" data-account="initials">HR</span><span class="who"><b data-account="name">Hanif Rehman</b><small>Owner</small></span></button>
       <div class="menu">
         <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>My profile</a>
         <a href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</a>
@@ -65,10 +65,10 @@
     <button class="tab" type="button" role="tab" id="s5" aria-selected="false" aria-controls="sp5" tabindex="-1">Security</button></div>
   <div>
     <section class="card tab-panel" id="sp1" role="tabpanel" aria-labelledby="s1"><div class="card-head"><div><h2>Account</h2><p>This information appears on invoices and emails.</p></div></div>
-      <form class="card-body" data-validate data-success="Account details saved" data-saved-label="Saved">
-        <div class="form-grid"><div class="field"><label class="label" for="a-first">First name</label><input class="input" id="a-first" value="Hanif" required><span class="error-text">Enter your first name.</span></div>
-        <div class="field"><label class="label" for="a-last">Last name</label><input class="input" id="a-last" value="Rehman" required></div>
-        <div class="field full"><label class="label" for="a-email">Email</label><input class="input" id="a-email" type="email" value="hanif@hisaab.example" required><span class="error-text">Enter a valid email address.</span></div>
+      <form class="card-body" data-validate data-account-form data-success="Account details saved" data-saved-label="Saved">
+        <div class="form-grid"><div class="field"><label class="label" for="a-first">First name</label><input class="input" id="a-first" value="Hanif" required data-account-field="first"><span class="error-text">Enter your first name.</span></div>
+        <div class="field"><label class="label" for="a-last">Last name</label><input class="input" id="a-last" value="Rehman" required data-account-field="last"></div>
+        <div class="field full"><label class="label" for="a-email">Email</label><input class="input" id="a-email" type="email" value="hanif@hisaab.example" required data-account-field="email"><span class="error-text">Enter a valid email address.</span></div>
         <div class="field"><label class="label" for="a-lang">Language</label><select class="select" id="a-lang"><option>English</option><option>اردو (Urdu)</option><option>Español</option><option>Deutsch</option></select></div>
         <div class="field"><label class="label" for="a-tz">Time zone</label><select class="select" id="a-tz"><option>(GMT+5) Karachi</option><option>(GMT+0) London</option><option>(GMT−5) New York</option></select></div></div>
         <div class="flex gap-8 mt-24"><button class="btn btn-primary" type="submit">Save changes</button><button class="btn btn-ghost" type="reset">Discard</button><span class="saved-note" data-saved-note hidden></span></div></form></section>
