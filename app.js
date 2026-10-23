@@ -20,6 +20,7 @@
     document.dispatchEvent(new CustomEvent("themechange", { detail: t }));
   }
   $$("[data-theme-toggle]").forEach(function (b) {
+    b.setAttribute("aria-pressed", root.getAttribute("data-theme") === "dark");
     b.addEventListener("click", function () { setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark"); });
   });
 
@@ -466,6 +467,7 @@
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!validate(form)) return;
+      form.dispatchEvent(new CustomEvent("hisaab:submit", { bubbles: true }));
       var go = form.getAttribute("data-redirect");
       var msg = form.getAttribute("data-success");
       if (msg) toast(msg);
@@ -519,6 +521,10 @@
     $$("[name]", form).forEach(function (f) {
       var v = f.type === "checkbox" ? (f.checked ? "Yes" : "No") : f.value.trim();
       vals[f.name] = v;
+      // {fieldTone} = data-tone of the chosen <option>; {fieldText} = a date field shown like {today}
+      var opt = f.tagName === "SELECT" && f.options[f.selectedIndex];
+      if (opt && opt.hasAttribute("data-tone")) vals[f.name + "Tone"] = opt.getAttribute("data-tone");
+      if (f.type === "date" && v) { var dp = v.split("-"); vals[f.name + "Text"] = new Date(+dp[0], +dp[1] - 1, +dp[2]).toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }); }
       if (f.name === "name" || f.name === "contact") {
         var parts = v.split(/\s+/);
         vals.initials = ((parts[0] || "?")[0] + (parts[1] ? parts[1][0] : "")).toUpperCase();
@@ -672,6 +678,31 @@
   });
   var qp = new URLSearchParams(location.search).get("q"), ts = $("[data-table-search]");
   if (qp && ts) { ts.value = qp; ts.dispatchEvent(new Event("input")); }
+
+  /* Account details --------------------------------------------------------
+     A [data-account-form] with [data-account-field="first|last|email"] keeps the values in this browser only
+     (demo — connect your backend to really save them) and fills every [data-account="name|first|initials|email"]. */
+  var account = null;
+  try { account = JSON.parse(store.get("hisaab-account")); } catch (e) { /* ignore bad data */ }
+  function showAccount(a) {
+    if (!a || !a.first) return;
+    var last = a.last || "";
+    var v = { first: a.first, name: (a.first + " " + last).trim(), initials: (a.first[0] + (last[0] || "")).toUpperCase(), email: a.email };
+    $$("[data-account]").forEach(function (el) { var k = el.getAttribute("data-account"); if (v[k]) el.textContent = v[k]; });
+  }
+  showAccount(account);
+  $$("[data-account-form]").forEach(function (form) {
+    var fields = $$("[data-account-field]", form);
+    // Show the stored values in the form, and make them what "Discard" goes back to
+    if (account) fields.forEach(function (f) { var k = f.getAttribute("data-account-field"); if (account[k] != null) f.value = f.defaultValue = account[k]; });
+    form.addEventListener("hisaab:submit", function () {
+      var a = {};
+      fields.forEach(function (f) { f.value = f.defaultValue = f.value.trim(); a[f.getAttribute("data-account-field")] = f.value; });
+      account = a;
+      store.set("hisaab-account", JSON.stringify(a));
+      showAccount(a);
+    });
+  });
 
   /* Current year in footers */
   $$("[data-year]").forEach(function (n) { n.textContent = new Date().getFullYear(); });
