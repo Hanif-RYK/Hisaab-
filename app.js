@@ -20,6 +20,7 @@
     document.dispatchEvent(new CustomEvent("themechange", { detail: t }));
   }
   $$("[data-theme-toggle]").forEach(function (b) {
+    b.setAttribute("aria-pressed", root.getAttribute("data-theme") === "dark");
     b.addEventListener("click", function () { setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark"); });
   });
 
@@ -519,6 +520,10 @@
     $$("[name]", form).forEach(function (f) {
       var v = f.type === "checkbox" ? (f.checked ? "Yes" : "No") : f.value.trim();
       vals[f.name] = v;
+      // {fieldTone} = data-tone of the chosen <option>; {fieldText} = a date field shown like {today}
+      var opt = f.tagName === "SELECT" && f.options[f.selectedIndex];
+      if (opt && opt.hasAttribute("data-tone")) vals[f.name + "Tone"] = opt.getAttribute("data-tone");
+      if (f.type === "date" && v) { var dp = v.split("-"); vals[f.name + "Text"] = new Date(+dp[0], +dp[1] - 1, +dp[2]).toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }); }
       if (f.name === "name" || f.name === "contact") {
         var parts = v.split(/\s+/);
         vals.initials = ((parts[0] || "?")[0] + (parts[1] ? parts[1][0] : "")).toUpperCase();
