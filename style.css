@@ -340,8 +340,9 @@ p a:not(.btn), .plan-note a, .check a { text-decoration: underline; text-underli
 .empty-row td { text-align: center; padding: 40px 16px; color: var(--ink-3); }
 
 /* Tabs */
-.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); overflow-x: auto; }
-.tab { background: none; border: 0; padding: 11px 14px; font-weight: 600; font-size: 14px; color: var(--ink-3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+/* The divider line is an inset shadow so the row never scrolls vertically (avoids a stray scrollbar on Android) */
+.tabs { display: flex; gap: 4px; box-shadow: inset 0 -1px 0 var(--line); overflow-x: auto; overflow-y: hidden; }
+.tab { background: none; border: 0; padding: 11px 14px; font-weight: 600; font-size: 14px; color: var(--ink-3); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
 .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--primary); }
 .tab-panel[hidden] { display: none; }
 .segmented { display: inline-flex; padding: 3px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-md); }
